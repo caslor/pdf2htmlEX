@@ -1,0 +1,66 @@
+ How to install pdf2htmlEX in Ubuntu 20.04
+
+
+pdf2htmlEX is a tool that allows you to convert PDF to HTML without losing text or format. pdf2htmlEX renders PDF files in HTML, using modern Web technologies. It is very useful if you want to convert academic papers with lots of formulas and figures to HTML format
+
+This post will show you how to install pdf2htmlEX on Ubuntu 20.04 LTS.
+
+As at the time of writing this post pdf2htmlEX is no longer packaged by Debian/Ubuntu, you will need to install from the pdf2htmlEX Debian archives (*.deb).
+
+To get started you will need to install the dependencies :
+
+sudo apt update
+sudo apt install -y libfontconfig1 libcairo2 libjpeg-turbo8
+
+If you get error about unmet dependencies run the following to fix broken packages :
+
+sudo apt apt --fix-broken install
+
+Download latest *.deb package from pdf2htmlEX repository :
+
+wget https://github.com/pdf2htmlEX/pdf2htmlEX/releases/download/v0.18.8.rc1/pdf2htmlEX-0.18.8.rc1-master-20200630-Ubuntu-bionic-x86_64.deb
+sudo mv pdf2htmlEX-0.18.8.rc1-master-20200630-Ubuntu-bionic-x86_64.deb pdf2htmlEX.deb
+
+Install the package :
+
+sudo apt install ./pdf2htmlEX.deb
+
+It is very important that you use a (relative or absolute) path to the *.deb file. It is the ./ in front of the pdf2htmlEX.deb file name which tells apt install that it is supposed to install a local file rather than a package name in apt install's internal package database.
+
+Alternatively you could use the following commands :
+
+sudo dpkg -i pdf2htmlEX.deb
+sudo apt install -f
+
+Test your installation :
+
+pdf2htmlEX -v
+
+You should see something like this :
+
+pdf2htmlEX version 0.18.8.rc1
+Copyright 2012-2015 Lu Wang <coolwanglu@gmail.com> and other contributors
+Libraries: 
+  poppler 0.89.0
+  libfontforge (date) 20200314
+  cairo 1.16.0
+Default data-dir: /usr/local/share/pdf2htmlEX
+Poppler data-dir: /usr/local/share/pdf2htmlEX/poppler
+Supported image format: png jpg svg
+
+
+
+
+
+
+
+
+
+pdf2htmlEX --embed cfijo --dest-dir out pdf/Power_control_manual.pdf
+pdf2htmlEX --zoom 1.3 pdf/Power_control_manual.pdf
+pdf2htmlEX -f 3 -l 5 --fit-width 1024 --bg-format jpg pdf/Power_control_manual.pdf
+
+
+pdf2htmlEX --embed cfijo --dest-dir out Power_control_manual.pdf
+pdf2htmlEX --zoom 1.3 Power_control_manual.pdf
+pdf2htmlEX -f 3 -l 5 --fit-width 1024 --bg-format jpg Power_control_manual.pdf
